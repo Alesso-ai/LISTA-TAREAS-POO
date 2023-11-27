@@ -32,10 +32,59 @@
         this.setContador();
         //Necesitamos tambien añadir las tareas al localStorage
         this.setArregloTareas();
-        
+    }
 
+    //El siguiente metodo para listar Tareas
+    listarTareas(){
+        //Primero genero la tarea y luego dentro de esa tarea llamo a editar tarea y añado un concepto
+        //el inner es para que a cada tarea le añadas una descripcion
+        //Esa descripcion es diferente para cada tarea, forma de inicializar la descripcion de la tarea, a nada string vacio para q no sea null o undefined
+        this.listaTareas.innerHTML = '' ;
+        //Bucle iterativo para listar las tareas
+        //Un ORM es inyectar objetos en el Backend 
+        //Reverse para que cuando creemos isntancias de tareas, reverse lo que hace es al crear una tarea me da la vuelta al array
+        //En vez de abajo las crea arriba
+        this.arregloTareas.reverse().forEach((tarea) => {
+            //Definir que vamos a dibujar en hmtl
+            this.listaTareas.innerHTML += ç
+            `<li id="${tarea.id}">
+            <input type="text" class="input-tarea" value="${tarea.descripcion}">
+            <button class="boton-eliminar">X</button>
+            </li>
+            `;
+        });
 
     }
+
+     //Metodo para editar tarea
+     //Cuando generemos instancias de la clase tarea, cuando hagamos click escribo lo que quiera
+     //Cuando de al enter llamo a editar tarea para cambiar 
+     //Mirara que id tiene ese objeto tarea
+     editarTarea(){
+        //Generamos una variable tarea
+        //Esta linea de codigo cambia la descripcion, obtengo que tarea estoy cambiando
+        //la t es una variable que itera como en el for
+        const tarea = this.arregloTareas.find((t) => t.id==idTarea);
+        //nos aseguramos de que tengamos la tarea y la editamos
+        if(tarea){
+            tarea.editar(descripcion);
+            //tener en considerancion que tenemos en localStorage
+            this.setArregloTareas();
+        }
+     }
+
+     //Metodo para eliminar tarea
+     //es parecido a editar tarea quitando find por filter
+     eliminarTarea(idTarea){
+        //guardando en arreglo de tareas, todas las tareas menos 1 la del id
+        this.arregloTareas = this.arregloTareas.filter((t) => t.id != idTarea);
+        //actualizamos el local storage
+        this.setArregloTareas();
+
+
+     }
+
+
 
 
 }
