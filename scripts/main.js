@@ -1,6 +1,6 @@
 /*
 Alejandro Ruiz Prieto
-Git Hub: 
+GitHub: 
 */
 
 //Primero de todo importamos
@@ -36,7 +36,7 @@ lista_tareas.addEventListener("click", (event) => {
 lista_tareas.addEventListener("keypress", (event) => {
   const target = event.target;
   //Codigo ASCII el codigo 13 corresponde a la tecla enter
-  if (event.keycode === 13) {
+  if (event.keyCode === 13) {
     tareaManager.editarTarea(target.parentElement.id, target.value);
-  };
+  }
 });
