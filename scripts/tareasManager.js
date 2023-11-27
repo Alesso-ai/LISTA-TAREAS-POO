@@ -26,6 +26,13 @@
         //Antes de meterlo al array hay que crear una tarea, creamos una nueva 
         //Le pasamos por parametro this contador porque es atributo en tarea.js, la descripcion al principio esta vacia
         const nuevaTarea = new Tarea(this.contandor,descripcion);
+        //Una vez elevado el contador a 1 y tenemos la instancia de la tarea con su id agregamos la tarea
+        this.arregloTareas.push(nuevaTarea);
+        //Tenemos que tener un get y set para el contador para almacenar en el LocalStorage
+        this.setContador();
+        //Necesitamos tambien añadir las tareas al localStorage
+        this.setArregloTareas();
+        
 
 
     }
