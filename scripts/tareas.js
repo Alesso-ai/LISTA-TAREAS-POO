@@ -1,7 +1,9 @@
 //Primero la tarea
 //POO en el navegador
 //Constructor por parametros de las propiedas de la tarea
-class Tarea {
+//Export para exportar a otras clases
+
+export class Tarea {
     constructor(id,descripcion) {
         //Para hacer referencia a la propia clase
         this.id = id;
@@ -14,6 +16,5 @@ class Tarea {
 
     }
 
-    //
-    
+
 }
