@@ -22,10 +22,10 @@
     agregarTarea(descripcion){
         //cada vez que agregamos una tarea sumamos +1 al contador
         //Ponemos this porque es una clase, cualquier instancia de esta clase
-        this.contandor ++;
+        this.contador++;
         //Antes de meterlo al array hay que crear una tarea, creamos una nueva 
         //Le pasamos por parametro this contador porque es atributo en tarea.js, la descripcion al principio esta vacia
-        const nuevaTarea = new Tarea(this.contandor,descripcion);
+        const nuevaTarea = new Tarea(this.contador,descripcion);
         //Una vez elevado el contador a 1 y tenemos la instancia de la tarea con su id agregamos la tarea
         this.arregloTareas.push(nuevaTarea);
         //Tenemos que tener un get y set para el contador para almacenar en el LocalStorage
@@ -46,7 +46,7 @@
         //En vez de abajo las crea arriba
         this.arregloTareas.reverse().forEach((tarea) => {
             //Definir que vamos a dibujar en hmtl
-            this.listaTareas.innerHTML += ç
+            this.listaTareas.innerHTML += 
             `<li id="${tarea.id}">
             <input type="text" class="input-tarea" value="${tarea.descripcion}">
             <button class="boton-eliminar">X</button>
@@ -60,11 +60,11 @@
      //Cuando generemos instancias de la clase tarea, cuando hagamos click escribo lo que quiera
      //Cuando de al enter llamo a editar tarea para cambiar 
      //Mirara que id tiene ese objeto tarea
-     editarTarea(){
+     editarTarea(idTarea, descripcion){
         //Generamos una variable tarea
         //Esta linea de codigo cambia la descripcion, obtengo que tarea estoy cambiando
         //la t es una variable que itera como en el for
-        const tarea = this.arregloTareas.find((t) => t.id==idTarea);
+        const tarea = this.arregloTareas.find((t) => t.id == idTarea);
         //nos aseguramos de que tengamos la tarea y la editamos
         if(tarea){
             tarea.editar(descripcion);
@@ -90,7 +90,7 @@
         this.contador = 0;
         //localStorage
         this.setArregloTareas();
-        this.setContandor();
+        this.setContador();
     }
 
     //Ahora getters y setter
@@ -99,12 +99,12 @@
         return cont;
     }
 
-    setContandor(){
-        localStorage.setItem("contador", this.contandor);    
+    setContador(){
+        localStorage.setItem("contador", this.contador);    
     }
 
     //metodo para asegurar que borras todo del tiron
-    inicializarContandor(){
+    inicializarContador(){
         if(this.getContador() != null){
             this.contador = this.getContador();
 
@@ -121,7 +121,7 @@
 
     setArregloTareas(){
         localStorage.setItem("arregloTareas", JSON.stringify(this.arregloTareas));
-        this.listaTareas;
+        this.listarTareas;
     }
 
 
