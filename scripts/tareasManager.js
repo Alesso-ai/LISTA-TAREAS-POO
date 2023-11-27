@@ -80,9 +80,49 @@
         this.arregloTareas = this.arregloTareas.filter((t) => t.id != idTarea);
         //actualizamos el local storage
         this.setArregloTareas();
+    }
 
+    //Metodo para limpiar todo objeto tarea
+    limpiarTodo(){
+        //con esto limpiamos todas las tareas
+        this.arregloTareas = [];
+        //igualamos el contador a 0
+        this.contador = 0;
+        //localStorage
+        this.setArregloTareas();
+        this.setContandor();
+    }
 
-     }
+    //Ahora getters y setter
+    getContador(){
+        const cont = localStorage.getItem("contador");
+        return cont;
+    }
+
+    setContandor(){
+        localStorage.setItem("contador", this.contandor);    
+    }
+
+    //metodo para asegurar que borras todo del tiron
+    inicializarContandor(){
+        if(this.getContador() != null){
+            this.contador = this.getContador();
+
+        }
+    }
+
+    getArregloTareas(){
+        this.setContador();
+        //De ese arreglo parseamos ese array y obtenemos objetos tareas, quito el array y me quedo con objetos tareas
+        const arreglo = JSON.parse(localStorage.getItem("arregloTareas"));
+        //Retornamos el array vacio para que no tenga errores
+        return arreglo || [];
+    }
+
+    setArregloTareas(){
+        localStorage.setItem("arregloTareas", JSON.stringify(this.arregloTareas));
+        this.listaTareas;
+    }
 
 
 
