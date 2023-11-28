@@ -39,6 +39,10 @@ export class TareasManager {
     //el inner es para que a cada tarea le añadas una descripcion
     //Esa descripcion es diferente para cada tarea, forma de inicializar la descripcion de la tarea, a nada string vacio para q no sea null o undefined
     this.listaTareas.innerHTML = '';
+      //Comprobar si tenemos algo en localStorage
+      if(localStorage.getItem("arregloTareas") !== null) {
+        this.arregloTareas = this.getArregloTareas();
+      }
     //Bucle iterativo para listar las tareas
     //Un ORM es inyectar objetos en el Backend
     //Reverse para que cuando creemos isntancias de tareas, reverse lo que hace es al crear una tarea me da la vuelta al array
@@ -114,8 +118,11 @@ export class TareasManager {
     this.setContador();
     //De ese arreglo parseamos ese array y obtenemos objetos tareas, quito el array y me quedo con objetos tareas
     const arreglo = JSON.parse(localStorage.getItem("arregloTareas"));
-    //Retornamos el array vacio para que no tenga errores
-    return arreglo || [];
+
+    //Convertir objetos genericos en instancias de la clase tarea
+    //map recorre la informacion de localStorage
+    const tareasConvertidas = arreglo.map((tarea) =>  new Tarea(tarea.id,tarea.descripcion));
+    return tareasConvertidas;
   }
 
   setArregloTareas() {
